@@ -1,0 +1,100 @@
+<!-- index.html -->
+<!doctype html>
+
+<!-- ASSIGN ANGULAR MODULE -->
+<html ng-app="forcasting">
+<head>
+	<!-- META -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+	<title>Node/Angular Forcasting App</title>
+
+	<!-- SCROLLS -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+	<style>
+		html                    { overflow-y:scroll; }
+		body                    { padding-top:50px; }
+		#todo-list              { margin-bottom:30px; }
+	</style>
+
+	<!-- SPELLS -->
+
+	<link data-require="bootstrap-css@3.2.0" data-semver="3.2.0" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+	<script data-require="angular.js@1.3.1" data-semver="1.3.1" src="//code.angularjs.org/1.3.1/angular.js"></script>
+	<script data-require="ui-bootstrap@0.11.0" data-semver="0.11.0" src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.min.js"></script>
+	<script data-require="lodash.js@3.10.0" data-semver="3.10.0" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.0/lodash.js"></script>
+	<script src="smart-table.js"></script>
+	<link rel="stylesheet" href="style.css" />
+	<script src="js/controllers/controller.main.js"></script>
+	<script src="js/services/service.main.js"></script>
+	<script src="js/core.js"></script>
+
+</head>
+<body ng-controller="mainController">
+	<div class="container">
+
+		<div class="jumbotron text-center">
+			<h1>Forecasting<!--span class="label label-info">{{ todos.length }}</span--></h1>
+		</div>
+
+		<button onclick="change_color()">change</button>
+
+
+		<table  st-table="rowCollection" class="table table-striped">
+			<thead>
+				<tr>
+					<th st-sort="">Item Nbr</th>
+					<th st-sort="">Vendor Nbr</th>
+					<th st-sort="">UPC</th>
+					<th st-sort="">Segment</th>
+					<th st-sort="">Item Desc</th>
+					<th st-sort="">DD 2013</th>
+					<th st-sort="">FDD 2013</th>
+					<th st-sort="">Diff</th>
+					<!-- <th st-sort="">Item Nbr</th>
+					<th>Item Retail</th>
+					<th>Total Retail</th> -->
+				</tr>
+        </thead>
+        <tbody>
+        	<tr ng-repeat="row in rowCollection">
+        		<td>{{row["Item Nbr"]}}</td>
+        		<td>{{row["Vendor Nbr"]}}</td>
+        		<td>{{row["UPC"]}}</td>
+						<td>{{row["Segment"]}}</td>
+        		<td>{{row["Item Desc 1"]}}</td>
+						<td>{{row["DD_2013"]}}</td>
+						<td>{{row["FDD_2013"]}}</td>
+						<td>{{row["Diff"]}}</td>
+        		<!-- <td>{{row["Item Desc 1"]}}</td>
+        		<td>{{row["Item Type"]}}</td>
+
+        		<td>{{row["Item Retail"]}}</td>
+        		<td>{{row["Total Retail"]}}</td> -->
+<!-- 					<td>{{row.email}}</td>
+-->				</tr>
+</tbody>
+
+</table>
+<!-- <div onload="change_color()"></div> -->
+</div>
+
+<script>
+function change_color(){
+	var table = document.getElementsByTagName('table')[0];
+	var tbody = table.getElementsByTagName('tbody')[0];
+	var cells = tbody.getElementsByTagName('td');
+
+	for (var i=7, len=cells.length; i<len; i = i + 8){
+		if (parseInt(cells[i].innerHTML,10) < 0){
+			cells[i].style.backgroundColor = 'red';
+		}
+		else if (parseInt(cells[i].innerHTML,10) > 0){
+			cells[i].style.backgroundColor = 'green';
+		}
+	}
+}
+</script>
+</body>
+</html>
